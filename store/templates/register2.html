@@ -1,0 +1,93 @@
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Login Form</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="content">
+        <header>Sign Up</header>
+
+        <form class="form"  method="POST"> 
+
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text"  name="firstname" id="firstname" value="{{values.first_name}}" required placeholder="First Name">
+          </div>
+
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text"  name="lastname" id="lastname" value="{{values.last_name}}" required placeholder="Last Name">
+          </div>
+
+          <div class="field space">
+            <span class="fa fa-phone"></span>
+            <input  type="number" name="phone"  id="phone" value="{{values.phone}}" required placeholder="Phone Number">
+          </div>
+            
+          <div class="field space">
+            <span class="fa fa-envelope"></span>
+            <input type="email" name="email" id="email" value="{{values.email}}"  required placeholder="Email Address">
+          </div>
+
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" name="password" id="password" class="pass-key" required placeholder=" Choose Password">
+            <span class="show">SHOW</span>
+          </div>
+
+          {% csrf_token %}
+          <div class="field space">
+            <input type="submit" value="SUBMIT">
+          </div>
+</form>
+<!-- <div class="login">
+Or login with</div>
+<div class="links">
+          <div class="facebook">
+            <i class="fab fa-facebook-f"><span>Facebook</span></i>
+          </div>
+<div class="instagram">
+            <i class="fab fa-instagram"><span>Instagram</span></i>
+          </div>
+</div> -->
+<!-- <div class="field space">
+<div class="signup">
+Back to home?
+          <a href="/home">Home</a>
+        </div>
+</div>
+</div> -->
+
+<div class="error">
+  {% if error%}
+  
+     {{error}}
+  
+   {% endif %}    
+  </div>
+  
+</div>
+
+
+
+<script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "HIDE";
+         showBtn.style.color = "#3498db";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "SHOW";
+         showBtn.style.color = "#222";
+       }
+      });
+    </script>
+  </body>
+</html>

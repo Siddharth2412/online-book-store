@@ -1,0 +1,226 @@
+{% extends 'Pruthbase.html' %}
+{% load static %}
+{% static 'image' as baseUrl %}
+
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+<!-- body -->
+<div class="container-fluid mt-3">
+	<div class="row">
+
+
+		<!-- filter -->
+
+		<!-- <div class="col-lg-3 mx-auto">
+			<div class="list-group">
+
+				<a href="/" class="list-group-item list-group-item-action">All Products</a>
+
+				{% for category in categories %}
+				<a href="/?category={{category.id}}"
+					class="list-group-item list-group-item-action">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div> -->
+
+		<!-- all products -->
+		<div id='products' class="col-lg-9 mx-auto">
+			
+			
+			<div class="row pt--30">
+				<div class="col-md-12">
+					<div class="pagination-block">
+						<!-- <ul class="pagination-btns flex-center">
+							<li><a href="#" class="single-btn prev-btn ">|<i class="zmdi zmdi-chevron-left"></i> </a>
+							</li>
+							<li><a href="#" class="single-btn prev-btn "><i class="zmdi zmdi-chevron-left"></i> </a>
+							</li>
+							<li class="active"><a href="#" class="single-btn">1</a></li>
+							<li><a href="#" class="single-btn">2</a></li>
+							<li><a href="#" class="single-btn">3</a></li>
+							<li><a href="#" class="single-btn">4</a></li>
+							<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i></a>
+							</li>
+							<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i>|</a>
+							</li>
+						</ul> -->
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mx-auto ">
+				{% for product in products%}
+				<div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
+					<img class="card-img-top" src="{{product.image.url}}" id='pru_img' alt="Card image cap">
+					<div class="card-body">
+						<p class="card-title">{{product.Book_name}}</p>
+						
+	
+						<span class="price">{{product.price|currency}}</span> 
+						<a href="/product/{{product.id}}" id="eye">
+							<button  id="qv{{product.id}}" class="single-btn cart">
+							    <i class="fas fa-eye"></i></button></a>
+						<!-- {{product | is_in_cart:request.session.cart }} -->
+					</div>
+					<!-- <div class="hover-contents">
+						
+						<div class="hover-btns">
+						
+						   
+						</div>
+					     </div> -->
+					
+					<div class="card-footer p-0 no-gutters">
+
+						{% if product|is_in_cart:request.session.cart %}
+						<div class="row no-gutters">
+
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input hidden type="text" name='remove' value='True'>
+								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
+							</form>
+							<div class="text-center col">{{product|cart_quantity:request.session.cart}} in Cart</div>
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
+							</form>
+						</div>
+						{% else %}
+						<form action="/#{{product.id}}" method="POST" class="btn-block">
+							{% csrf_token %}
+							<input hidden type="text" name='product' value='{{product.id}}'>
+							<input type="submit" class="float-right btn btn-light  form-control"
+								value="Add To Cart">
+						</form>
+						{% endif %}
+
+					</div>
+
+				</div>
+				{% endfor %}
+
+				
+
+			
+		
+                    
+			</div>
+
+			
+
+
+
+
+
+
+			<div class="row pt--30">
+				<div class="col-md-12">
+					<div class="pagination-block">
+						<!-- <ul class="pagination-btns flex-center">
+							<li><a href="#" class="single-btn prev-btn ">|<i class="zmdi zmdi-chevron-left"></i> </a>
+							</li>
+							<li><a href="#" class="single-btn prev-btn "><i class="zmdi zmdi-chevron-left"></i> </a>
+							</li>
+							<li class="active"><a href="#" class="single-btn">1</a></li>
+							<li><a href="#" class="single-btn">2</a></li>
+							<li><a href="#" class="single-btn">3</a></li>
+							<li><a href="#" class="single-btn">4</a></li>
+							<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i></a>
+							</li>
+							<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i>|</a>
+							</li>
+						</ul> -->
+					</div>
+				</div>
+			</div>
+
+
+			       <!--=================================
+        				Home Features Section
+   				 ===================================== -->
+    	<section class="mb--30 space-dt--30">
+         <div class="container">
+             <div class="row">
+                 <div class="col-xl-3 col-md-6 mt--30">
+                     <div class="feature-box h-100">
+                         <div class="icon">
+                             <i class="fas fa-shipping-fast"></i>
+                         </div>
+                         <div class="text">
+                             <h5>Free Shipping Item</h5>
+                             <p> Orders over ₹500</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-xl-3 col-md-6 mt--30">
+                     <div class="feature-box h-100">
+                         <div class="icon">
+                             <i class="fas fa-redo-alt"></i>
+                         </div>
+                         <div class="text">
+                             <h5>If Any Issues</h5>
+                             <p>100% money back</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-xl-3 col-md-6 mt--30">
+                     <div class="feature-box h-100">
+                         <div class="icon">
+                             <i class="fas fa-piggy-bank"></i>
+                         </div>
+                         <div class="text">
+                             <h5>Cash On Delivery</h5>
+                             <!-- <p>Lorem ipsum dolor amet</p> -->
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-xl-3 col-md-6 mt--30">
+                     <div class="feature-box h-100">
+                         <div class="icon">
+                             <i class="fas fa-life-ring"></i>
+                         </div>
+                         <div class="text">
+                             <h5>Help & Support</h5>
+                             <p>Call us : +91 1010101010</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     	</section>
+
+	          <!--=================================
+        Promotion Section One
+    ===================================== -->
+    <section class="section-margin">
+         <h1 class="sr-only">Promotion Section</h1>
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-6">
+                     <a  class="promo-image promo-overlay">
+                         <img src="{%static 'image/bg-images/promo-banner-with-text.jpg'%}" alt="">
+                     </a>
+                 </div>
+                 <div class="col-lg-6">
+                     <a  class="promo-image promo-overlay">
+                         <img src="{%static 'image/bg-images/promo-banner-with-text-2.jpg'%}" alt="">
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

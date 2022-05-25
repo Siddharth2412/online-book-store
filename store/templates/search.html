@@ -1,0 +1,222 @@
+{% extends 'Pruthbase.html' %}
+{% load static %}
+{% static 'image' as baseUrl %}
+{% block content %}
+
+
+		<section class="breadcrumb-section">
+			<h2 class="sr-only">Site Breadcrumb</h2>
+			<div class="container">
+				<div class="breadcrumb-contents">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+							<li class="breadcrumb-item active">Search</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</section>
+		<main class="inner-page-sec-padding-bottom">
+			<div class="container">
+				<div class="shop-toolbar mb--30">
+					<div class="row align-items-center">
+						<div class="col-lg-2 col-md-2 col-sm-6">
+							<!-- Product View Mode -->
+							<div class="product-view-mode">
+								<a href="#" class="sorting-btn " data-target="grid"><i class="fas fa-th"></i></a>
+								<a href="#" class="sorting-btn" data-target="grid-four">
+									<span class="grid-four-icon">
+										<i class="fas fa-grip-vertical"></i><i class="fas fa-grip-vertical"></i>
+									</span>
+								</a>
+								<a href="#" class="sorting-btn active" data-target="list "><i
+										class="fas fa-list"></i></a>
+							</div>
+						</div>
+						<div class="col-xl-5 col-md-4 col-sm-6  mt--10 mt-sm--0">
+							<span class="toolbar-status">
+								<b>Result</b>
+							</span>
+						</div>
+						<div class="col-xl-5 col-md-4 col-sm-6  mt--10 mt-sm--0">
+							<span class="toolbar-status">
+								<b>Result</b>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="shop-toolbar d-none">
+					<div class="row align-items-center">
+						<div class="col-lg-2 col-md-2 col-sm-6">
+							<!-- Product View Mode -->
+							<div class="product-view-mode">
+								<a href="#" class="sorting-btn active" data-target="grid"><i class="fas fa-th"></i></a>
+								<a href="#" class="sorting-btn" data-target="grid-four">
+									<span class="grid-four-icon">
+										<i class="fas fa-grip-vertical"></i><i class="fas fa-grip-vertical"></i>
+									</span>
+								</a>
+								<a href="#" class="sorting-btn" data-target="list "><i class="fas fa-list"></i></a>
+							</div>
+						</div>
+						<div class="col-xl-5 col-md-4 col-sm-6  mt--10 mt-sm--0">
+							<span class="toolbar-status">
+								Result
+							</span>
+						</div>
+						
+						
+					</div>
+				</div>
+
+
+
+<!---------------------------------------------- search loopppppp -------------------------------------------------->
+
+{% if desc|length < 1 %}
+<p> No search results </p>
+Your search results :<b>{{ aap }}</b> did not match any documents.<br>
+Suggestion:<br>
+<ul>
+         <li>Make sure that all words are spelled correctly</li>
+         <li>Try different keywords.</li>
+         <li>Try more general keywords.</li>
+</ul>
+{% endif %}
+
+
+<!---------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+				<div class="shop-product-wrap list with-pagination row space-db--30 shop-border">
+
+					<!-- -------------------------------------------------------->
+
+
+
+					{% block body %} 
+					{% for product in desc %}
+					
+					<div class="col-lg-4 col-sm-6">
+						<div class="product-card card-style-list">
+
+							
+							<div class="product-grid-content">
+								<div class="product-header">
+									<h3><a href="#" class="author">{{product.Publisher_name}}</a></h3>
+									<h3><a href="product-details.html">{{product.Book_name}}</a></h3>
+								</div>
+								<div class="product-card--body">
+									<div class="card-image">
+										<img src="{{product.image.url}}" id='pru' alt="">
+										<div class="hover-contents">
+											<a href="product-details.html" class="hover-image">
+												<img src="{{product.image.url}}" id='pru' alt="">
+											</a>
+											<div class="hover-btns">
+												<!-- <a href="cart.html" class="single-btn">
+													<i class="fas fa-shopping-basket"></i>
+												</a> -->
+												<!-- <a href="wishlist.html" class="single-btn">
+													<i class="fas fa-heart"></i>
+												</a>
+												<a href="compare.html" class="single-btn">
+													<i class="fas fa-random"></i>
+												</a> -->
+												<a href="/product/{{product.id}}">
+													<button  id="qv{{product.id}}" class="single-btn cart">
+													    <i class="fas fa-eye"></i></button></a>
+											</div>
+										</div>
+									</div> 	
+									<div class="price-block">
+										<span class="price">RS.{{product.price}}</span>
+										<!-- <del class="price-old">1000₹</del> -->
+										<!-- <span class="price-discount">20%</span> -->
+									</div>
+								</div>
+							</div>
+							
+
+							
+							<div class="product-list-content">
+								<div class="card-image">
+									<img src="{{product.image.url}}" id='pru' alt="">
+								</div>
+								<div class="product-card--body">
+									<div class="product-header">
+										<a  class="author">
+											{{product.Publisher_name}}
+										</a>
+										<h3><a tabindex="0">{{product.Book_name}}</a></h3>
+									</div>
+									<article>
+										<h2 class="sr-only"></h2>
+										<p></p>
+									</article>
+									<div class="price-block">
+										<span class="price">₹{{product.price}}</span>
+										<!-- <del class="price-old">500₹</del>
+										<span class="price-discount">0%</span> -->
+									</div>
+									<!-- <div class="rating-block">
+										<span class="fas fa-star star_on"></span>
+										<span class="fas fa-star star_on"></span>
+										<span class="fas fa-star star_on"></span>
+										<span class="fas fa-star star_on"></span>
+										<span class="fas fa-star "></span>
+									</div> -->
+									<div class="btn-block">
+										
+										<a href="/product/{{product.id}}" id="qv{{product.id}}" class="btn btn-outlined">
+											 View book </a>
+	
+											
+						
+										<a href="/cart" class="card-link"><i class="fas fa-heart"></i> View cart</a>
+										<a href="/contact" class="card-link"><i class="fas fa-random hidden-menu-item" ></i> Contact Us</a>
+									</div>
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
+					{% endfor %}
+					{% endblock %}
+
+				</div>
+
+
+
+				<!-- Pagination Block -->
+				<div class="row pt--30">
+					<div class="col-md-12">
+						<div class="pagination-block">
+							<!-- <ul class="pagination-btns flex-center">
+								<li><a href="#" class="single-btn prev-btn ">|<i class="zmdi zmdi-chevron-left"></i> </a>
+								</li>
+								<li><a href="#" class="single-btn prev-btn "><i class="zmdi zmdi-chevron-left"></i> </a>
+								</li>
+								<li class="active"><a href="#" class="single-btn">1</a></li>
+								<li><a href="#" class="single-btn">2</a></li>
+								<li><a href="#" class="single-btn">3</a></li>
+								<li><a href="#" class="single-btn">4</a></li>
+								<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i></a>
+								</li>
+								<li><a href="#" class="single-btn next-btn"><i class="zmdi zmdi-chevron-right"></i>|</a>
+								</li>
+							</ul> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+			
+
+{% endblock %}

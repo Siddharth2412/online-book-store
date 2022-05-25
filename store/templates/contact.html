@@ -1,0 +1,155 @@
+{% extends 'Pruthbase.html' %}
+{% load static %}
+{% static 'image' as baseUrl %}
+
+{% block content %}
+
+<div class="row pt--30">
+    <div class="col-md-12">
+        <div class="pagination-block">
+
+        </div>
+    </div>
+</div>    
+<section class="breadcrumb-section">
+         <!-- <h2 class="sr-only">Site Breadcrumb</h2> -->
+         <div class="container">
+             <div class="breadcrumb-contents">
+                 <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                         <li class="breadcrumb-item active">Contact</li>
+                     </ol>
+                 </nav>
+             </div>
+         </div>
+</section>
+
+<main class="contact_area inner-page-sec-padding-bottom">
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-6">
+                     <div class="contact_form">
+                         <h3 class="ct_title">Send Us a Message</h3>
+                         <form id="contact-form" action="/contact" method="post" class="contact-form">
+                            {% csrf_token %}
+
+                             <div class="row">
+                                 <div class="col-lg-12">
+                                     <div class="form-group">
+                                         <label>Your Name <span class="required">*</span></label>
+                                         <input type="text" id="name" name="name" class="form-control"
+                                             required>
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-12">
+                                     <div class="form-group">
+                                         <label>Your Email <span class="required">*</span></label>
+                                         <input type="email" id="email" name="email" class="form-control"
+                                             required>
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label> Your Phone Number <span class="required">*</span></label>
+                                        <input type="text" id="phone" name="phone" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                 <div class="col-lg-12">
+                                     <div class="form-group">
+                                         <label>Your Message</label>
+                                         <textarea id="message" name="message"
+                                             class="form-control" required></textarea>
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-12">
+                                     <div class="form-btn">
+                                         <button type="submit" class="btn btn-black w-100">send</button>
+                                     </div>
+                                    
+                                 </div>
+                             </div>
+                         </form>
+                         <!-- <div class="form-output">
+                             <p class="form-messege"></p>
+                         </div> -->
+                     </div>
+                 </div>
+                 <div class="col-lg-6">
+                     <div id="google-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.179614223991!2d72.80530581542516!3d21.224724986434143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04ea120aa0883%3A0x1e0669331f42876c!2ssilverstone%20Arcade!5e0!3m2!1sen!2sin!4v1616581926076!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                 </div>
+             </div>
+         </div>
+     </main>
+
+     <div class="row pt--30">
+        <div class="col-md-12">
+            <div class="pagination-block">
+    
+            </div>
+        </div>
+    </div>    
+
+     <div class="contact-bottom-info inner-page-sec-padding-bottom">
+         <div class="container">
+             <div class="row">
+                 <!--Contact Information Start-->
+                 <div class="col-lg-3 col-sm-6 col-12 mb-30">
+                     <div class="contact-info">
+                         <span class="icon"><i class="fa fa-phone"></i></span>
+                         <div class="content">
+                             <h3 class="title">Contact By Phone</h3>
+                             <p>+91 1010101010<br> +91 7896541230</p>
+                         </div>
+                     </div>
+                 </div>
+                 <!--Contact Information End-->
+
+                 <!--Contact Information Start-->
+                 <div class="col-lg-3 col-sm-6 col-12 mb-30">
+                     <div class="contact-info">
+                         <span class="icon"><i class="fa fa-envelope"></i></span>
+                         <div class="content">
+                             <h3 class="title">Contact By Email</h3>
+                             <p>suport@oldbookstall.com
+
+                                <br> oldbookstall.1234@gmail.com</p>
+                         </div>
+                     </div>
+                 </div>
+                 <!--Contact Information End-->
+
+                 <!--Contact Information Start-->
+                 <div class="col-lg-3 col-sm-6 col-12 mb-30">
+                     <div class="contact-info">
+                         <span class="icon"><i class="fa fa-map-marker"></i></span>
+                         <div class="content">
+                             <h3 class="title">Come To See Us</h3>
+                             <p>103 Silverstone Arcade,surat <br> Gujarat,india 39004</p>
+                         </div>
+                     </div>
+                 </div>
+                 <!--Contact Information End-->
+
+                 <!--Contact Information Start-->
+                 <div class="col-lg-3 col-sm-6 col-12 mb-30">
+                     <div class="contact-info">
+                         <span class="icon"><i class="fa fa-users"></i></span>
+                         <div class="content">
+                             <h3 class="title">Old books Social</h3>
+                             <ul class="social-list list-inline">
+                                 <li class="single-social facebook"><a href="#"><i class="ion ion-social-facebook"></i></a></li>
+                                 <li class="single-social twitter"><a href="#"><i class="ion ion-social-twitter"></i></a></li>
+                                 <li class="single-social google"><a href="#"><i class="ion ion-social-googleplus-outline"></i></a></li>
+                                 <li class="single-social youtube"><a href="#"><i class="ion ion-social-youtube"></i></a></li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <!--Contact Information End-->
+             </div>
+         </div>
+     </div>
+
+{% endblock %}
